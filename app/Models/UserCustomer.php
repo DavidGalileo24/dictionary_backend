@@ -27,4 +27,21 @@ class UserCustomer extends Model
         'gender' => GenderEnum::class
     ];
 
+
+    /*Inverse relationship: Company-user */
+    public function company(){
+        return $this->belongsTo(UserCustomer::class);
+    }
+
+
+    /*Inverse relationship: State-user */
+    public function state(){
+        return $this->belongsTo(State::class);
+    }
+
+    
+    /*Inverse relationship: Country-user */
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
 }
