@@ -24,7 +24,12 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'address' => 'required'
         ];
     }
 }

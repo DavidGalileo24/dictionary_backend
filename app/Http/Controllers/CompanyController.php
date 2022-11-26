@@ -17,8 +17,8 @@ class CompanyController extends Controller
     public function index()
     {
         try{
-            $user = CompanyResource::collection(Company::all());
-            return jsend_success($user);
+            $company = CompanyResource::collection(Company::all());
+            return jsend_success($company);
         } 
         catch(\Exception $e){
             return jsend_error($e);
@@ -38,10 +38,10 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         try{
-            $user = CompanyResource::create($request->all());
+            $company = Company::create($request->all());
             return jsend_success([
                 'message' => 'Added succesfully',
-                'data' => new CompanyResource($user)
+                'data' => new CompanyResource($company)
             ]);
         } 
         catch(\Exception $e){
