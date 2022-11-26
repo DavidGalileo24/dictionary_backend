@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserCustomerRequest;
 use App\Http\Requests\UpdateUserCustomerRequest;
+use App\Http\Resources\UserCustomerResource;
 use App\Models\UserCustomer;
 
 class UserCustomerController extends Controller
@@ -13,20 +14,12 @@ class UserCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $user = UserCustomerResource::collection(UserCustomer::all());
+        return $user;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -34,9 +27,9 @@ class UserCustomerController extends Controller
      * @param  \App\Http\Requests\StoreUserCustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserCustomerRequest $request)
-    {
-        //
+    public function store(StoreUserCustomerRequest $request) {
+        $user = UserCustomer::create($request->all());
+        return new UserCustomerResource($user);
     }
 
     /**
@@ -45,21 +38,11 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function show(UserCustomer $userCustomer)
-    {
-        //
+    public function show(UserCustomer $userCustomer) {
+        return UserCustomerResource::make($userCustomer);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UserCustomer  $userCustomer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserCustomer $userCustomer)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +51,9 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserCustomerRequest $request, UserCustomer $userCustomer)
-    {
-        //
+    public function update(UpdateUserCustomerRequest $request, UserCustomer $userCustomer) {
+        $userCustomer->update($request->all());
+        return new UserCustomerResource($userCustomer);
     }
 
     /**
@@ -79,8 +62,7 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserCustomer $userCustomer)
-    {
-        //
+    public function destroy(UserCustomer $userCustomer){
+        $userCustomer->delete();
     }
 }
