@@ -38,8 +38,8 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function show(UserCustomer $userCustomer) {
-        return UserCustomerResource::make($userCustomer);
+    public function show(UserCustomer $user) {
+        return UserCustomerResource::make($user);
     }
 
     
@@ -51,9 +51,9 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserCustomerRequest $request, UserCustomer $userCustomer) {
-        $userCustomer->update($request->all());
-        return new UserCustomerResource($userCustomer);
+    public function update(UpdateUserCustomerRequest $request, UserCustomer $user) {
+        $user->update($request->all());
+        return new UserCustomerResource($user);
     }
 
     /**
@@ -62,7 +62,7 @@ class UserCustomerController extends Controller
      * @param  \App\Models\UserCustomer  $userCustomer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserCustomer $userCustomer){
-        $userCustomer->delete();
+    public function destroy(UserCustomer $user){
+        $user->delete();
     }
 }
