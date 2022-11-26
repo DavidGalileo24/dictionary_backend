@@ -15,8 +15,13 @@ class UserCustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $user = UserCustomerResource::collection(UserCustomer::all());
-        return $user;
+        try{
+            $user = UserCustomerResource::collection(UserCustomer::all());
+            return jsend_success($user);
+        } 
+        catch(\Exception $e){
+            return jsend_error($e);
+        }
     }
 
     
@@ -28,8 +33,16 @@ class UserCustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUserCustomerRequest $request) {
-        $user = UserCustomer::create($request->all());
-        return new UserCustomerResource($user);
+        try{
+            $user = UserCustomer::create($request->all());
+            return jsend_success([
+                'message' => 'Added succesfully',
+                'data' => new UserCustomerResource($user)
+            ]);
+        } 
+        catch(\Exception $e){
+            return jsend_error($e);
+        }
     }
 
     /**
@@ -39,7 +52,13 @@ class UserCustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(UserCustomer $user) {
-        return UserCustomerResource::make($user);
+        try{
+            $user = UserCustomerResource::make($user);
+            return jsend_success($user);
+        } 
+        catch(\Exception $e){
+            return jsend_error($e);
+        }
     }
 
     
@@ -52,8 +71,12 @@ class UserCustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserCustomerRequest $request, UserCustomer $user) {
+       try{
         $user->update($request->all());
-        return new UserCustomerResource($user);
+        return jsend_success(new UserCustomerResource($user));
+       } catch(\Exception $e){
+            return jsend_error($e);
+        }
     }
 
     /**
@@ -63,6 +86,12 @@ class UserCustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(UserCustomer $user){
-        $user->delete();
+        try{
+            $user->delete();
+            return jsend_success(['message' => 'Deleted successfully!']);
+        }
+        catch(\Exception $e){
+            return jsend_error($e);
+        }
     }
 }

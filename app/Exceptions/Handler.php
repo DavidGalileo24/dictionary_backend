@@ -4,9 +4,12 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-
+use Shalvah\LaravelJsend\JsendExceptionFormatter;
 class Handler extends ExceptionHandler
 {
+
+    use JsendExceptionFormatter;
+
     /**
      * A list of exception types with their corresponding custom log levels.
      *
