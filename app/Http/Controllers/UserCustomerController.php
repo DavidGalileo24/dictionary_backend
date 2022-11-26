@@ -73,8 +73,12 @@ class UserCustomerController extends Controller
     public function update(UpdateUserCustomerRequest $request, UserCustomer $user) {
        try{
         $user->update($request->all());
-        return jsend_success(new UserCustomerResource($user));
-       } catch(\Exception $e){
+        return jsend_success([
+            'message' => 'Added successfully!',
+            'data' => new UserCustomerResource($user)
+        ]);
+       } 
+       catch(\Exception $e){
             return jsend_error($e);
         }
     }
