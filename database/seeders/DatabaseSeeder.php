@@ -3,7 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Company;
 use Illuminate\Database\Seeder;
+use \App\Models\Country;
+use App\Models\State;
+use App\Models\UserCustomer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +19,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Country::factory(7)->create();
+        State::factory(7)->create();
+        Company::factory(25)->create();
+        UserCustomer::factory(100)->create();
     }
 }
