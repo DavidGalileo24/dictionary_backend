@@ -9,17 +9,23 @@ class Country extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'name'
+    ];
+
+    /* Relationship: country-state */
     public function state(){
         return $this->hasMany(State::class);
     }
 
 
-    /*Relationship: Company-user */
+    /* Inverse relationship: user-country */
     public function userCustomer(){
         return $this->BelongsTo(UserCustomer::class);
     }
 
-     /*Relationship: Company-user */
+     /*Inverse relationship: country-company */
      public function company(){
         return $this->BelongsTo(Company::class);
     }

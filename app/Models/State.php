@@ -17,14 +17,14 @@ class State extends Model
     
 
 
-     /*Relationship: Company-user */
+     /*Inverse relationship: State-user */
      public function userCustomer(){
         return $this->BelongsTo(UserCustomer::class);
     }
 
     
 
-     /*Relationship: Company-user */
+     /* Inverse relationship: State-company */
      public function company(){
         return $this->BelongsTo(Company::class);
     }
